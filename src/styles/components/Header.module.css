@@ -1,0 +1,68 @@
+.header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    background: transparent;
+    transition: all ease 0.5s;
+}
+
+.black {
+    background-color: #050505;
+}
+
+.header--logo {
+    position: absolute;
+    top: 20%;
+    height: 25px;
+}
+
+.header--logo img {
+    height: 200%;
+}
+
+.header--user {
+    height: 35px;
+}
+
+.header--user img {
+    height: 100%;
+}
+
+.header--info{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    margin-left: 68%;
+    top: 20%;
+    display: flex;
+    
+}
+
+.buttonsHeader {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.buttonsHeader button{
+    align-items: center;
+    display: flex;
+    margin-right: 2rem;
+    border: none;
+    background: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.buttonsHeader img {
+    margin-right: 0.5rem;
+}
+
+.favHeader{
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(152deg) brightness(103%) contrast(103%);
+}

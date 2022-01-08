@@ -1,0 +1,37 @@
+.lists {
+  margin-top: -150px;
+}
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* footer {
+  margin: 50px 0;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: #DB202C;
+  font-weight: bold;
+  background-color: #FFF;
+}
+
+footer a:hover {
+  color: #1B7013;
+}
+
+footer a:visited {
+  color: darkviolet;
+} */

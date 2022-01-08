@@ -1,0 +1,202 @@
+.mainFeatured{
+    display: flex;
+    flex-direction: row;
+}
+
+.featured-options{
+    border-radius: 5px;
+    margin: 8rem 0rem 15rem 2rem;
+    /* height: 50vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70vw;
+}
+
+.featured-options h1{
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.option {
+    opacity: 0.5;
+    border-radius: 5px;
+    height: 100%;
+    /* margin-top: 1rem; */
+    width: 20vw;
+
+    transform: scale(1);
+    transition: all ease 0.2s;
+
+    color: red;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.featured-options p {
+    margin-bottom: 0px;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.featured-options h1 + p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.option:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.featured {
+    border-radius: 5px;
+    margin: 8rem 0rem 15rem 2rem;
+    /* height: 50vh; */
+    height: 520px;
+    width: 70vw;
+    transform: scale(1);
+    transition: all ease 0.2s;
+}
+
+.featured:hover{
+    transform: scale(1.01);
+}
+
+.featured--vertical {
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to right, #111 0%, transparent 100%);
+    border-radius: 5px;
+    transform: scale(1.01);
+    transition: all ease 0.2s;
+}
+
+.featured--horizontal {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 3rem;
+    padding-top: 8rem;
+}
+
+.featured--name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.featured--info {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.featured--points,
+.featured--year,
+.featured--seasons {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.featured--points {
+    color: #46d369;
+}
+
+.featured--description {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: rgb(170, 170, 170);
+    max-width: 40%;
+}
+
+.featured--buttons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+}
+
+.featured--watchbutton, 
+.featured--mylistbutton {
+    width: 8rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 1rem;
+    opacity: 1;
+    transition: all ease 0.1s;
+}
+
+.featured--watchbutton img,
+.featured--mylistbutton img {
+    width: 1rem;
+    margin-right: 1rem;
+}
+
+
+.featured--watchbutton:hover, 
+.featured--mylistbutton:hover {
+    opacity: 0.9;
+}
+
+.featured--watchbutton {
+    background-color: #55EAEA;
+    color: #000;
+}
+
+.featured--mylistbutton {
+    background-color: #FFF;
+    color: #000;
+}
+
+
+.featured--mylistbutton:hover {
+    color: #000000;
+}
+
+.featured--watchbutton:hover {
+    color: #000;
+}
+
+.featured--genres {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+@media (max-width: 760px) {
+    .featured {
+        height: 90vh;
+    }
+
+    .featured--name {
+        font-size: 3rem;
+    }
+
+    .featured--info {
+        font-size: 1rem;
+    }
+
+    .featured--description {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-right: 1.5rem;
+    }
+
+    .featured--watchbutton,
+    .featured--mylistbutton {
+        font-size: 1rem;
+    }
+
+    .featured--genres {
+        font-size: 1rem;
+    }
+}
+
