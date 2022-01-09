@@ -1,12 +1,11 @@
 .mainFeatured{
     display: flex;
-    flex-direction: row;
 }
 
 .featured-options{
     border-radius: 5px;
     margin: 8rem 0rem 15rem 2rem;
-    /* height: 50vh; */
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,14 +22,10 @@
     border-radius: 5px;
     height: 100%;
     /* margin-top: 1rem; */
-    width: 20vw;
+    /* width: 20vw; */
 
     transform: scale(1);
     transition: all ease 0.2s;
-
-    color: red;
-    font-weight: bold;
-    font-size: 30px;
 }
 
 .featured-options p {
@@ -49,11 +44,15 @@
     transform: scale(1.02);
 }
 
+.selected {
+    opacity: 0.9;
+}
+
 .featured {
     border-radius: 5px;
-    margin: 8rem 0rem 15rem 2rem;
-    /* height: 50vh; */
-    height: 520px;
+    margin: 8rem 0rem 8rem 0; 
+    /* height: 520px; */
+    height: 75vh;
     width: 70vw;
     transform: scale(1);
     transition: all ease 0.2s;
@@ -64,7 +63,6 @@
 }
 
 .featured--vertical {
-    width: inherit;
     height: inherit;
     background: linear-gradient(to right, #111 0%, transparent 100%);
     border-radius: 5px;
@@ -73,7 +71,6 @@
 }
 
 .featured--horizontal {
-    width: inherit;
     height: inherit;
     display: flex;
     flex-direction: column;

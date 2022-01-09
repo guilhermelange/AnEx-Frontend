@@ -1,14 +1,14 @@
 .movieRow {
     margin-bottom: 30px;
+    margin-left: 4vw;
 }
 
-.movieRow h2 {
-    margin: 0px 0px 0px 30px;
+.movieRow h5 {
+    margin-bottom: 0;
 }
 
 .movieRow--listarea {
     overflow-x: hidden;
-    padding-left: 30px;
 }
 
 .movieRow--list {
@@ -17,7 +17,7 @@
 
 .movieRow--item {
     display: inline-block;
-    width: 150px;
+    width: 165px;
     cursor: pointer;
 }
 
@@ -35,7 +35,7 @@
 .movieRow--right {
     position: absolute;
     width: 40px;
-    height: 225px;
+    height: 250px;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 99;
     display: flex;
@@ -48,7 +48,7 @@
 }
 
 .movieRow--left {
-    left: 0;
+    left: calc(4vw - 40px);
 }
 
 .movieRow--right {

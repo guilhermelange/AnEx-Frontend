@@ -7,9 +7,18 @@
     height: 70px;
     display: flex;
     align-items: center;
-    padding: 0 30px;
+    /* padding: 0 30px; */
     background: transparent;
     transition: all ease 0.5s;
+    justify-content: center;
+}
+
+.headerContainer {
+    max-width: 92vw;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .black {
@@ -17,9 +26,14 @@
 }
 
 .header--logo {
-    position: absolute;
-    top: 20%;
+    /* position: absolute;
+    top: 20%; */
+}
+
+.header--logo a {
+    display: flex;
     height: 25px;
+    align-items: center;
 }
 
 .header--logo img {
@@ -35,11 +49,11 @@
 }
 
 .header--info{
-    position: absolute;
+    /* position: absolute; */
     justify-content: center;
     align-items: center;
-    margin-left: 68%;
-    top: 20%;
+    /* margin-left: 68%;
+    top: 20%; */
     display: flex;
     
 }

@@ -2,17 +2,22 @@
     border-top: 1px solid rgb(37, 37, 37);
     padding-top: 5rem;
     margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .headFooter {
     display: flex;
-    flex-direction: row;
     align-items: top;
+    justify-content: space-between;
+    max-width: 92vw;
+    width: 100%;
 }
 
-.letterFooter{
+/* .letterFooter{
     margin-left: 3rem;
-}
+} */
 
 .letterFooter img{
     width: 15rem;
@@ -25,7 +30,6 @@
 }
 
 .navFooter {
-    margin: 0 12rem 0 12rem;
     padding: 2rem;
     transition: 1s;
 }
@@ -39,6 +43,10 @@
 
 .followFooter img{
     margin: 1rem 1.5rem 0 0;
+}
+
+.followFooter .logoLast {
+    margin-right: 0;
 }
 
 @media (max-width: 1200px) {

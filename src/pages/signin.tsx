@@ -32,9 +32,9 @@ export default function Signin() {
         const { profileObj: { email, givenName, familyName, googleId: password, imageUrl: avatar } } = googleData;
         const name = `${givenName} ${familyName}`.trim();
         try {
-            await signIn({email, password, google: true, avatar});
-        } catch {
-            console.log('SignUp already registered');
+            await signIn({email, password, google: true, avatar, name});
+        } catch (error) {
+            console.log(error.message)
         }
     }
 

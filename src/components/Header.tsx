@@ -7,26 +7,30 @@ export default function Header({ black }) {
     const [avatar, setAvatar] = useState('');
 
     useEffect(() => {
-        const { 'nextauth.avatar': avatar_url } = parseCookies();
+        let { 'nextauth.avatar': avatar_url } = parseCookies();
+        if (['null', 'undefined'].includes(avatar_url))
+            avatar_url = ''
         setAvatar(avatar_url);
     }, [])
 
     return (
         <header className={`${black ? styles.black : ''} ${styles.header}`}>
-            <div className={styles['header--logo']}>
-                <a href="#">
-                    <img src='/assets/letter-logo.png' alt="AnEx" />
-                </a>
-            </div>
-            <div className={styles['header--info']}>
-                <div className={styles.buttonsHeader}>
-                    <button><img src='/assets/fav.svg' alt="AnEx" className={styles.favHeader} />Favoritos</button>
-                    <button><img src='/assets/search.svg' alt="AnEx" />Pesquisar</button>
-                </div>
-                <div className={styles['header--user']}>
+            <div className={styles.headerContainer}>
+                <div className={styles['header--logo']}>
                     <a href="#">
-                        <img src={avatar || '/assets/user-default.png'} alt="Usuário" style={{ borderRadius: '10px' }} />
+                        <img src='/assets/letter-logo.png' alt="AnEx" />
                     </a>
+                </div>
+                <div className={styles['header--info']}>
+                    <div className={styles.buttonsHeader}>
+                        <button><img src='/assets/fav.svg' alt="AnEx" className={styles.favHeader} />Favoritos</button>
+                        <button><img src='/assets/search.svg' alt="AnEx" />Pesquisar</button>
+                    </div>
+                    <div className={styles['header--user']}>
+                        <a href="#">
+                            <img src={avatar || '/assets/user-default.png'} alt="Usuário" style={{ borderRadius: '10px' }} />
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>

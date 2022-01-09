@@ -18,9 +18,10 @@ export default function Footer(props) {
 
                 <div className={styles.followFooter}>
                     <div>
-                        <span className={styles.footerSpan}>SIGA-NOS</span></div>
+                        <span>SIGA-NOS</span>
+                    </div>
                     <a href="#"><img src='/assets/facebook.svg' alt="facebook" /></a>
-                    <a href="#"><img src='/assets/instagram.svg' alt="instagram" /></a>
+                    <a href="#"><img className={styles.logoLast} src='/assets/instagram.svg' alt="instagram" /></a>
                 </div>
             </div>
         </div>

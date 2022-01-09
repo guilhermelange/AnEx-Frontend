@@ -1,6 +1,3 @@
-import fav from '../assets/fav.svg'
-import play from '../assets/play.svg'
-import Image from 'next/image'
 import styles from '@/styles/components/FeaturedMovie.module.css'
 
 export default function FeaturedMovie({ item }) {

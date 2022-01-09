@@ -11,8 +11,6 @@ import loading from "@/assets/loading.gif"
 import Image from 'next/image';
 import styles from '@/styles/pages/home.module.css';
 import stylesFeat from '@/styles/components/FeaturedMovie.module.css';
-import { isAuthenticated } from '@/services/auth'
-import Router from 'next/router';
 
 export default function Home() {
   const [movieList, setMovieList] = useState([]);
@@ -27,19 +25,24 @@ export default function Home() {
       const listAnimes = [{
         slug: 'highlights',
         title: 'Destaques',
-        items: { results: listItems(responsedata.data, 1, 15) }
+        items: { results: listItems(responsedata.data, 1, 10) }
+      },
+      {
+        slug: 'onrise',
+        title: 'Em Alta',
+        items: { results: listItems(responsedata.data, 2, 10) }
       }]
+
+      // if (!selectedAnime)
+      //   setSelectedAnime(listAnimes[0].items.results[0].id);
+      // console.log('Selected: ' + selectedAnime)
+      
 
       setMovieList(listAnimes);
       setFeaturedData(jsonAnime);
     }
 
-    if (!isAuthenticated()) {
-      Router.replace('signin')
-    } else {
-      loadAll();
-    }
-    
+    loadAll();
   }, []);
 
   useEffect(() => {
@@ -59,30 +62,30 @@ export default function Home() {
 
   return (
     <>
-      <Header black={blackHeader} />
-
-      <div className={stylesFeat.mainFeatured}>
-        {featuredData &&
-          <FeaturedMovie item={featuredData} />
-        }
-        {movieList.map((item) => (
-          <FeaturedList key={item.slug} items={item.items} />
-        ))}
-      </div>
-
-      <section className={styles.lists}>
-        {movieList.map((item, key) => (
-          <MovieRow key={key} title={item.title} items={item.items} />
-        ))}
-      </section>
-
-      <Footer/>
-
-      {movieList.length <= 0 &&
-        <div className={styles.loading}>
-          <Image src={loading} alt="Carregando" />
+        <Header black={blackHeader} />
+        <div className={styles.container}>
+          <div className={stylesFeat.mainFeatured}>
+            {featuredData &&
+              <FeaturedMovie item={featuredData}/>
+            }
+            {movieList.slice(0,1).map((item) => (
+              <FeaturedList key={item.slug} items={item.items} featuredData={featuredData}/>
+            ))}
+          </div>
         </div>
-      }
+
+        <section className={styles.lists}>
+          {movieList.map((item, key) => (
+            <MovieRow key={key} title={item.title} items={item.items} />
+          ))}
+        </section>
+
+        <Footer />
+        {movieList.length <= 0 &&
+          <div className={styles.loading}>
+            <Image src={loading} alt="Carregando" />
+          </div>
+        }
     </>
   );
 }

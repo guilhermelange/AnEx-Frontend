@@ -16,7 +16,7 @@ const MovieRow = ({ title, items }) => {
 
     const handleRightArrow = () => {
         let x = scrollX - Math.round(window.innerWidth / 2);
-        let listW = items.results.length * 150;
+        let listW = items.results.length * 165;
         if ((window.innerWidth - listW) > x) {
             x = (window.innerWidth - listW) - 60;
         }
@@ -25,7 +25,7 @@ const MovieRow = ({ title, items }) => {
 
     return (
         <div className={styles.movieRow}>
-            <h2>{title}</h2>
+            <h5>{title}</h5>
             <div className={styles['movieRow--left']} onClick={handleLeftArrow}>
                 <NavigateBeforeIcon style={{ fontSize: 50 }} />
             </div>
@@ -36,7 +36,7 @@ const MovieRow = ({ title, items }) => {
             <div className={styles['movieRow--listarea']}>
                 <div className={styles['movieRow--list']} style={{
                     marginLeft: scrollX,
-                    width: items.results.length * 150
+                    width: items.results.length * 165
                 }}>
                     {items.results.length > 0 && items.results.map((item, key) => (
                         <div key={key} className={styles['movieRow--item']}>

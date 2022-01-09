@@ -18,15 +18,26 @@ interface SignInRequestData {
   password: string;
   google?: boolean;
   avatar?: string;
+  name?: string;
 }
 
 export async function signInRequest(data: SignInRequestData) {
-  const {email, password, google, avatar} = data;
+  const {email, password, google, avatar, name } = data;
   if (!email || (!password && !google)) {
       throw new Error('Preencha e-mail e senha para continuar!')
   } else {
       try {
-          const response = await api.post("/sessions", { email, password, avatar, google});
+          if (google) {
+            try {
+              console.log(`${name} - ${email} - ${password} - ${avatar}`)
+              const response = await api.post("/users", { name, email, password, avatar });
+              console.log('response: ' + response.data)
+            } catch(error) {
+              console.log(error.message);
+            }
+          }
+
+          const response = await api.post("/sessions", { email, password, google});
           const {token, user} = response.data;
           return {token, user};
       } catch (err) {

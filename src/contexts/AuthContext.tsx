@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import { setCookie, parseCookies } from 'nookies';
+import { createContext, useState } from "react";
+import { setCookie } from 'nookies';
 import Router from 'next/router';
 
 import { signInRequest } from "@/services/auth";
@@ -17,6 +17,7 @@ interface SignInData {
   password: string;
   google?: boolean;
   avatar?: string;
+  name?: string;
 }
 
 interface AuthContextType {
@@ -31,12 +32,13 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null)
   const isAuthenticated = !!user;
 
-  async function signIn({ email, password, google, avatar }: SignInData) {
+  async function signIn({ email, password, google, avatar, name: userName }: SignInData) {
     const { token, user: {id, name, avatar: avatar_url} } = await signInRequest({
       email,
       password,
       google,
       avatar,
+      name: userName
     })
 
     const loggedUser = {id, name, email, avatar: avatar_url}
@@ -46,7 +48,7 @@ export function AuthProvider({ children }) {
       maxAge: 60 * 60 * 1, // 1 hour
     })
 
-    setCookie(undefined, 'nextauth.avatar', avatar, {
+    setCookie(undefined, 'nextauth.avatar', avatar_url, {
       maxAge: 60 * 60 * 1, // 1 hour
     })
     
