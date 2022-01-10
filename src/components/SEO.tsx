@@ -17,7 +17,7 @@ export default function SEO({
     shouldIndexPage = true,
     children
 }: SEOProps) {
-    const pageTitle = `${title} ${!shouldExcludeTitleSuffix ? '| Web' : ''}`
+    const pageTitle = `${title} ${!shouldExcludeTitleSuffix ? '| AnEx' : ''}`
     const pageImage = image ? `${process.env.NEXT_PUBLIC_SITE_URL}/${image}` : null
 
     return (

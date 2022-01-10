@@ -29,9 +29,7 @@ export async function signInRequest(data: SignInRequestData) {
       try {
           if (google) {
             try {
-              console.log(`${name} - ${email} - ${password} - ${avatar}`)
-              const response = await api.post("/users", { name, email, password, avatar });
-              console.log('response: ' + response.data)
+              await api.post("/users", { name, email, password, avatar });
             } catch(error) {
               console.log(error.message);
             }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import styles from '@/styles/components/MovieRow.module.css'
+import AnimeImage from './AnimeImage';
 
 const MovieRow = ({ title, items }) => {
     const [scrollX, setscrollX] = useState(0);
@@ -39,9 +40,7 @@ const MovieRow = ({ title, items }) => {
                     width: items.results.length * 165
                 }}>
                     {items.results.length > 0 && items.results.map((item, key) => (
-                        <div key={key} className={styles['movieRow--item']}>
-                            <img src={`/assets/${item.image_file}`} alt={item.name} />
-                        </div>
+                        <AnimeImage key={key} image={item.image_file} name={item.name}/>
                     ))}
                 </div>
             </div>

@@ -1,75 +1,52 @@
-/* eslint-disable react/jsx-key */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import MovieRow from "@/components/MovieRow"
 import FeaturedList from "@/components/FeaturedList"
 import Footer from "@/components/Footer"
 import FeaturedMovie from "@/components/FeaturedMovie";
 import Header from "@/components/Header";
-import { api } from "@/services/api"
-import { listItems } from "@/utils/pagination";
 import loading from "@/assets/loading.gif"
 import Image from 'next/image';
 import styles from '@/styles/pages/home.module.css';
 import stylesFeat from '@/styles/components/FeaturedMovie.module.css';
+import { AnimeContext } from '@/contexts/AnimeContext';
+import SEO from '@/components/SEO';
+import { listItems } from '@/utils/pagination';
 
 export default function Home() {
+  const { featured, loadAll, animeData } = useContext(AnimeContext);
   const [movieList, setMovieList] = useState([]);
-  const [featuredData, setFeaturedData] = useState(null);
-  const [blackHeader, setBlackHeader] = useState(false);
 
   useEffect(() => {
-    const loadAll = async () => {
-      const responsedata = await api.get('animes');
-      const [jsonAnime] = responsedata.data;
+    if (!featured)
+      loadAll();
+  }, [])
 
-      const listAnimes = [{
+  useEffect(() => {
+    const listAnimes = [{
         slug: 'highlights',
         title: 'Destaques',
-        items: { results: listItems(responsedata.data, 1, 10) }
-      },
-      {
+        items: { results: listItems(animeData, 1, 10) }
+    },
+    {
         slug: 'onrise',
         title: 'Em Alta',
-        items: { results: listItems(responsedata.data, 2, 10) }
-      }]
+        items: { results: listItems(animeData, 2, 10) }
+    }]
 
-      // if (!selectedAnime)
-      //   setSelectedAnime(listAnimes[0].items.results[0].id);
-      // console.log('Selected: ' + selectedAnime)
-      
-
-      setMovieList(listAnimes);
-      setFeaturedData(jsonAnime);
-    }
-
-    loadAll();
-  }, []);
-
-  useEffect(() => {
-    const scroolListener = () => {
-      if (window.scrollY > 10) {
-        setBlackHeader(true);
-      } else {
-        setBlackHeader(false);
-      }
-    }
-
-    window.addEventListener('scroll', scroolListener);
-    return () => {
-      window.removeEventListener('scroll', scroolListener);
-    }
-  }, []);
+    setMovieList(listAnimes);
+  }, [animeData])
 
   return (
     <>
-        <Header black={blackHeader} />
+        <SEO title='Início'/>
+        <Header/>
         <div className={styles.container}>
           <div className={stylesFeat.mainFeatured}>
-            {featuredData &&
-              <FeaturedMovie item={featuredData}/>
+            {featured &&
+              <FeaturedMovie item={featured}/>
             }
             {movieList.slice(0,1).map((item) => (
-              <FeaturedList key={item.slug} items={item.items} featuredData={featuredData}/>
+              <FeaturedList key={item.slug} items={item.items} featuredData={featured}/>
             ))}
           </div>
         </div>
@@ -81,7 +58,7 @@ export default function Home() {
         </section>
 
         <Footer />
-        {movieList.length <= 0 &&
+        {animeData.length <= 0 &&
           <div className={styles.loading}>
             <Image src={loading} alt="Carregando" />
           </div>
