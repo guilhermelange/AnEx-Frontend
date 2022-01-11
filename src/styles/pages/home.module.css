@@ -1,6 +1,4 @@
 .lists {
-  /* margin-top: -150px; */
-  /* margin-left: calc(4vw - 30px); */
   margin-bottom: 4rem;
 }
 
@@ -20,6 +18,6 @@
 .container {
   max-width: 92vw;
   margin: 0 auto;
-  height: 100vh;
+  height: 90vh;
   margin-top: 3rem;
 }

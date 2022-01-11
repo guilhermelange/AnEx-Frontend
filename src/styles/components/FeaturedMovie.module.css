@@ -51,9 +51,7 @@
 
 .featured {
     border-radius: 5px;
-    /* margin: 3rem 0rem 8rem 0;  */
-    margin: 0 0rem 8rem 0; 
-    /* height: 520px; */
+    margin: 0 0rem 8rem 0;
     height: 75vh;
     width: 70vw;
     transform: scale(1);

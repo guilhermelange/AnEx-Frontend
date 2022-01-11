@@ -70,7 +70,7 @@ export default function Header({ favorite }: HeaderRequest) {
                                 <button><img src={ favorite ? '/assets/fav.svg' : '/assets/fav.svg'} alt="AnEx" className={styles.favHeader} />Favoritos</button>
                             </Link>
                             <div id={styles.divBusca}>
-                                <input type="search" id={styles.txtBusca} placeholder='Buscar...' onChange={e => setTextSearch(e.target.value)} value={textSearch ?? ''} />
+                                <input type="search" id={styles.txtBusca} placeholder='Buscar...' onChange={e => setTextSearch(e.target.value)} value={textSearch} />
                                 <Link href={`/search?q=${textSearch}`}>
                                     <img src="/assets/search.svg" alt="" id={styles.btnBusca} />
                                 </Link>
