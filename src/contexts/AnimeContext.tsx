@@ -3,14 +3,8 @@ import { api } from '@/services/api'
 import { listItems } from '@/utils/pagination'
 import AnimeDTO from '@/interface/AnimeDTO'
 
-interface AnimeList {
-    slug: string;
-    title: string;
-    items: object;
-}
-
 interface AnimeContextType {
-    featured: object | null;
+    featuredState: [any, Dispatch<any>];
     loadAll: () => Promise<void>;
     searchState: [string, Dispatch<SetStateAction<string>>];
     animeData: AnimeDTO[] | null;
@@ -20,7 +14,8 @@ export const AnimeContext = createContext({} as AnimeContextType)
 
 export function AnimeProvider({ children }) {
     const [animeData, setAnimeData] = useState([])
-    const [featured, setFeatured] = useState(null);
+    const featuredState = useState(null);
+    const [, setFeatured] = featuredState;
     const searchState = useState('');
 
     async function loadAll() {
@@ -43,7 +38,7 @@ export function AnimeProvider({ children }) {
     }
 
     return (
-        <AnimeContext.Provider value={{ loadAll, featured, searchState, animeData }}>
+        <AnimeContext.Provider value={{ loadAll, featuredState, searchState, animeData }}>
             {children}
         </AnimeContext.Provider>
     )

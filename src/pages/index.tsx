@@ -12,9 +12,15 @@ import { AnimeContext } from '@/contexts/AnimeContext';
 import SEO from '@/components/SEO';
 import { listItems } from '@/utils/pagination';
 
+interface AnimeList {
+  slug: string;
+  title: string;
+  items: object;
+}
+
 export default function Home() {
-  const { featured, loadAll, animeData } = useContext(AnimeContext);
-  const [movieList, setMovieList] = useState([]);
+  const { featuredState: [featured], loadAll, animeData } = useContext(AnimeContext);
+  const [movieList, setMovieList] = useState([] as AnimeList[]);
 
   useEffect(() => {
     if (!featured)
@@ -45,15 +51,15 @@ export default function Home() {
             {featured &&
               <FeaturedMovie item={featured}/>
             }
-            {movieList.slice(0,1).map((item) => (
+            {movieList && movieList.slice(0,1).map((item) => (
               <FeaturedList key={item.slug} items={item.items} featuredData={featured}/>
             ))}
           </div>
         </div>
 
         <section className={styles.lists}>
-          {movieList.map((item, key) => (
-            <MovieRow key={key} title={item.title} items={item.items} />
+          {movieList.map((item) => (
+            <MovieRow key={item.slug} title={item.title} items={item.items} />
           ))}
         </section>
 
