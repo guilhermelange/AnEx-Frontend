@@ -1,6 +1,10 @@
 import styles from '@/styles/components/FeaturedMovie.module.css'
+import { useState } from 'react';
+import ModalAnime from '@/components/ModalAnime'
 
 export default function FeaturedMovie({ item }) {
+    const [isOpenModal, setIsOpen] = useState(false);
+    
     let firstDate = new Date(item.start_date);
     let genres = [];
     for (let i in item.genres) {
@@ -15,7 +19,7 @@ export default function FeaturedMovie({ item }) {
     return (
         <>
         <div className={styles.mainFeatured}>
-            <section className={styles.featured}  style={{
+            <section className={styles.featured} onClick={() => setIsOpen(true)} style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundImage: `url(/assets/${item.cover_file})`
@@ -41,9 +45,11 @@ export default function FeaturedMovie({ item }) {
                             <div className={styles['featured--genres']}><strong>Gêneros:</strong> {genres.join(', ')}</div>
                         </div>
                     </div>
-
                 </div>}
             </section>
+            <ModalAnime isOpenModal={isOpenModal} setIsOpen={setIsOpen}>
+                Confia
+            </ModalAnime>
         </div>
         </>
     );

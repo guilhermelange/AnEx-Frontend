@@ -13,6 +13,7 @@ const MovieRow = ({ title, items }) => {
             x = 0;
         }
         setscrollX(x);
+        console.log(scrollX)
     }
 
     const handleRightArrow = () => {
@@ -27,7 +28,7 @@ const MovieRow = ({ title, items }) => {
     return (
         <div className={styles.movieRow}>
             <h5>{title}</h5>
-            <div className={styles['movieRow--left']} onClick={handleLeftArrow}>
+            <div className={`${styles['movieRow--left']} ${scrollX == 0 ? styles.displayNone : ''}`} onClick={handleLeftArrow}>
                 <NavigateBeforeIcon style={{ fontSize: 50 }} />
             </div>
             <div className={styles['movieRow--right']} onClick={handleRightArrow}>

@@ -1,20 +1,38 @@
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    outline: 0;
-  }
-  
-  body, html {
-    background-color: #050505;
-    font-family: 'Roboto', sans-serif;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-    height: 100%;
-    width: 100%;
-    color: #FFF;
-  }
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
 
-  a:hover {
-    color: rgb(255, 255, 255);
-  }
+body, html {
+  background-color: #050505;
+  font-family: 'Roboto', sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  height: 100%;
+  width: 100%;
+  color: #FFF;
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+    opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+    opacity: 0;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}
