@@ -13,14 +13,11 @@
     justify-content: space-between;
     max-width: 92vw;
     width: 100%;
+    margin: 0 auto;
 }
 
-/* .letterFooter{
-    margin-left: 3rem;
-} */
-
 .letterFooter img{
-    width: 15rem;
+    height: 50px;
 }
 
 .letterFooter p{
@@ -61,7 +58,6 @@
        display: flex;
        flex-direction: column;
        text-align: center;
-       margin: 0 3rem 0 3rem;
     }
 
     .footerAnchor{

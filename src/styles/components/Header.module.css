@@ -1,13 +1,10 @@
 .header {
-    position: fixed;
+    position: sticky;
     z-index: 999;
     top: 0;
-    left: 0;
-    right: 0;
     height: 70px;
     display: flex;
     align-items: center;
-    /* padding: 0 30px; */
     background: transparent;
     transition: all ease 0.5s;
     justify-content: center;
@@ -50,13 +47,9 @@
 }
 
 .header--info{
-    /* position: absolute; */
     justify-content: center;
     align-items: center;
-    /* margin-left: 68%;
-    top: 20%; */
     display: flex;
-    
 }
 
 .buttonsHeader {
@@ -175,4 +168,10 @@
     border-radius: 5px;
     height: 100%;
     display: flex;
+}
+
+@media (max-width: 760px) {
+    #divBusca {
+        display: none;
+    }
 }

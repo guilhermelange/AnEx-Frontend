@@ -47,9 +47,10 @@
     transition: all ease 0.5s;
 }
 
-.movieRow--left {
+/* .movieRow--left {
     left: calc(4vw - 40px);
-}
+    left: 0;
+} */
 
 .movieRow--right {
     right: 0;

@@ -13,6 +13,7 @@ export default function FeaturedMovie({ item }) {
     }
 
     return (
+        <>
         <div className={styles.mainFeatured}>
             <section className={styles.featured}  style={{
                 backgroundSize: 'cover',
@@ -42,5 +43,6 @@ export default function FeaturedMovie({ item }) {
                 </div>}
             </section>
         </div>
+        </>
     );
 }

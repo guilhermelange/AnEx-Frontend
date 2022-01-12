@@ -21,6 +21,8 @@ export default function Header({ favorite }: HeaderRequest) {
     const [blackHeader, setBlackHeader] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const { query } = useRouter();
+    const [windowWidth, setWindowWidth] = useState(0);
+    const imageUrl = windowWidth >= 760 ? 'letter-logo.png' : 'logo.png';
 
     useEffect(() => {
         let { 'nextauth.avatar': avatar_url, 'nextauth.name': username } = parseCookies();
@@ -51,6 +53,21 @@ export default function Header({ favorite }: HeaderRequest) {
         }
     }, []);
 
+    useEffect(() => {
+        if (window !== undefined) {
+            const handleWindowResize = () => {
+                setWindowWidth(window.innerWidth);
+            };
+            
+            handleWindowResize();
+            window.addEventListener('resize', handleWindowResize);
+
+            return () => {
+                window.removeEventListener('resize', handleWindowResize);
+            }
+        }
+    }, []);
+
     function handleUserOptions(e) {
         setShowDropdown(!showDropdown);
     }
@@ -61,7 +78,7 @@ export default function Header({ favorite }: HeaderRequest) {
                 <div className={styles.headerContainer}>
                     <div className={styles['header--logo']}>
                         <a href={'/'}>
-                            <img src='/assets/letter-logo.png' alt="AnEx" />
+                            <img src={`/assets/${imageUrl}`} alt="AnEx" />
                         </a>
                     </div>
                     <div className={styles['header--info']}>
@@ -91,7 +108,6 @@ export default function Header({ favorite }: HeaderRequest) {
                     </div>
                 </div>
             </header>
-            <div style={{ height: 70 }}></div>
         </>
     );
 }
