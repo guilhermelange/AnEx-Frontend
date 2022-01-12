@@ -40,8 +40,10 @@
   flex: 8;
   padding: 0 32px;
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-content: center;
+  min-height: 96vh;
+  margin-top: 5vh;
 }
 
 .main-content{
