@@ -20,7 +20,7 @@
 }
 
 .black {
-    background-color: #050505;
+    background-color: #090909;
 }
 
 .header--logo {
@@ -128,7 +128,7 @@
 }
   
 .dropdown-content a:hover {
-    background-color: #050505;
+    background-color: #090909;
     border-radius: 5px;
 }
 

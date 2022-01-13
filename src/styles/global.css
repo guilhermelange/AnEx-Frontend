@@ -6,7 +6,7 @@
 }
 
 body, html {
-  background-color: #050505;
+  background-color: #090909;
   font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
@@ -22,6 +22,8 @@ a:hover {
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 250ms ease-in-out;
+  z-index: 999 !important;
+  background-color: rgba(0, 0, 0, .9) !important;
 }
 
 .ReactModal__Overlay--after-open{
@@ -35,4 +37,12 @@ a:hover {
 .ReactModal__Body--open,
 .ReactModal__Html--open {
   overflow: hidden;
+}
+
+.ReactModal__Content {
+  max-width: 70vw !important;
+  margin: 0 auto !important;
+  background: #141414 !important;
+  border: 1px solid #191717 !important;
+  padding: 0 !important;
 }

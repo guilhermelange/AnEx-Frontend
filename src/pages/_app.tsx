@@ -20,8 +20,4 @@ export default function MyApp({ Component, pageProps: { session, ...pageProps } 
 
 function ApplyModalConfigs() {
   Modal.setAppElement('#__next')
-  Modal.defaultStyles.content.maxWidth = '92vw';
-  Modal.defaultStyles.content.margin = '0 auto';
-  Modal.defaultStyles.overlay.zIndex = '999';
-  Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, .6)'
 }

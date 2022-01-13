@@ -1,6 +1,7 @@
 import styles from '@/styles/components/FeaturedMovie.module.css'
 import { useState } from 'react';
 import ModalAnime from '@/components/ModalAnime'
+import Anime from './Anime';
 
 export default function FeaturedMovie({ item }) {
     const [isOpenModal, setIsOpen] = useState(false);
@@ -48,7 +49,7 @@ export default function FeaturedMovie({ item }) {
                 </div>}
             </section>
             <ModalAnime isOpenModal={isOpenModal} setIsOpen={setIsOpen}>
-                Confia
+                <Anime item={item}></Anime>
             </ModalAnime>
         </div>
         </>
