@@ -26,7 +26,7 @@ export default function Home() {
         <>
             <SEO title="Favoritos"/>
             <Header favorite={true}/>
-            <div className={homeStyles.container}>
+            <div className={`${homeStyles.container} ${filteredAnime.length > 0 ? '':homeStyles.containerMsg}`}>
                 <h6>{filteredAnime.length > 0 ? 'Seus animes favoritos:' : 'Você ainda não possui favoritos'}</h6>
                 {filteredAnime && filteredAnime.map((anime) => (
                     <AnimeImage key={anime.id} image={anime.image_file} name={anime.name}></AnimeImage>

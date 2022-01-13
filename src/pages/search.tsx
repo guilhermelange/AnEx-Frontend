@@ -44,13 +44,15 @@ export default function Home() {
         ))}
       </div>
 
-      <Footer />
-
       {!queryString && 
-        <div className={homeStyles.loading}>
+        <div className={`${homeStyles.container} ${homeStyles.containerMsg}`}>
           Podemos te ajudar a localizar algum título?<br/>
           Basta informar o texto na caixa de pesquisa
         </div> }
+
+      <Footer />
+
+      
 
       {(animeData.length <= 0 || !filteredAnime) &&
         <div className={homeStyles.loading}>
