@@ -48,9 +48,10 @@ export default function FeaturedMovie({ item }) {
                     </div>
                 </div>}
             </section>
+            {isOpenModal && 
             <ModalAnime isOpenModal={isOpenModal} setIsOpen={setIsOpen}>
                 <Anime item={item}></Anime>
-            </ModalAnime>
+            </ModalAnime>}
         </div>
         </>
     );

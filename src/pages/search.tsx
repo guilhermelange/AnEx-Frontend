@@ -10,6 +10,7 @@ import AnimeImage from '@/components/AnimeImage';
 import AnimeDTO from '@/interface/AnimeDTO';
 import { useRouter } from 'next/router';
 import SEO from '@/components/SEO';
+import css from '@/styles/pages/search.module.css';
 
 export default function Home() {
   const { animeData, loadAll, searchState: [textSearch] } = useContext(AnimeContext);
@@ -35,12 +36,12 @@ export default function Home() {
     <>
       <SEO title="Pesquisa"/>
       <Header/>
-      <div className={homeStyles.container}>
+      <div className={css.container}>
         {(filteredAnime && queryString) && <h6>{
             filteredAnime.length > 0 ? 'Resultados obtidos' : 'Nenhum resultado obtido'
           } para "<strong>{queryString}"</strong> </h6> }
         {filteredAnime && filteredAnime.map((anime) => (
-          <AnimeImage key={anime.id} image={anime.image_file} name={anime.name}></AnimeImage>
+          <AnimeImage key={anime.id} item={anime}></AnimeImage>
         ))}
       </div>
 

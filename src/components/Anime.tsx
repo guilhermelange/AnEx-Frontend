@@ -1,5 +1,4 @@
 import css from '@/styles/components/Anime.module.css'
-import { CollectionsBookmarkOutlined } from '@material-ui/icons';
 import { useState } from 'react';
 
 export default function Anime({ item }) {
@@ -14,8 +13,6 @@ export default function Anime({ item }) {
     if (description.length > 200) {
         description = description.substring(0, 200) + '...';
     }
-    
-    console.log(JSON.stringify(item));
 
     return (
         <div className={css.mainFeatured}>

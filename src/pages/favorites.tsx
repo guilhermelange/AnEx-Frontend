@@ -9,6 +9,7 @@ import { AnimeContext } from '@/contexts/AnimeContext';
 import AnimeImage from '@/components/AnimeImage';
 import AnimeDTO from '@/interface/AnimeDTO';
 import SEO from '@/components/SEO';
+import css from '@/styles/pages/favorites.module.css'
 
 export default function Home() {
     const { animeData, loadAll } = useContext(AnimeContext);
@@ -26,10 +27,10 @@ export default function Home() {
         <>
             <SEO title="Favoritos"/>
             <Header favorite={true}/>
-            <div className={`${homeStyles.container} ${filteredAnime.length > 0 ? '':homeStyles.containerMsg}`}>
+            <div className={`${css.container} ${filteredAnime.length > 0 ? '':homeStyles.containerMsg}`}>
                 <h6>{filteredAnime.length > 0 ? 'Seus animes favoritos:' : 'Você ainda não possui favoritos'}</h6>
                 {filteredAnime && filteredAnime.map((anime) => (
-                    <AnimeImage key={anime.id} image={anime.image_file} name={anime.name}></AnimeImage>
+                    <AnimeImage key={anime.id} item={anime}></AnimeImage>
                 ))}
             </div>
 

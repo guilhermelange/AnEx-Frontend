@@ -13,7 +13,6 @@ const MovieRow = ({ title, items }) => {
             x = 0;
         }
         setscrollX(x);
-        console.log(scrollX)
     }
 
     const handleRightArrow = () => {
@@ -41,7 +40,7 @@ const MovieRow = ({ title, items }) => {
                     width: items.results.length * 165
                 }}>
                     {items.results.length > 0 && items.results.map((item, key) => (
-                        <AnimeImage key={key} image={item.image_file} name={item.name}/>
+                        <AnimeImage item={item} key={key} />
                     ))}
                 </div>
             </div>

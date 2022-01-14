@@ -24,6 +24,7 @@ a:hover {
   transition: opacity 250ms ease-in-out;
   z-index: 999 !important;
   background-color: rgba(0, 0, 0, .9) !important;
+  overflow: auto;
 }
 
 .ReactModal__Overlay--after-open{
@@ -40,6 +41,7 @@ a:hover {
 }
 
 .ReactModal__Content {
+  position: relative !important;
   max-width: 70vw !important;
   margin: 0 auto !important;
   background: #141414 !important;
