@@ -250,13 +250,13 @@
     justify-content: center;
 }
 
-.navAnime a {
+.navAnime div {
     color: #fff;
     text-decoration: none;
     margin: 0 20px 30px 20px;
 }
 
-.navAnime a:hover {
+.navAnime div:hover {
     text-decoration: underline;
 }
 
@@ -267,4 +267,54 @@
 .favorite {
     width: 1.2rem !important;
     margin-right: 5px;
+}
+
+.select {
+    width: auto;
+    background-color: #141414;
+    color: #7F8182;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
+}
+
+.select:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+.contentContainer hr {
+    margin-top: 0px;
+    height: 2px;
+}
+
+.seasonBox {
+    display: flex;
+    align-items: flex-start;
+    /* justify-content: center; */
+}
+
+.episodeBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.episodeDescriptionBox {
+    display: flex;
+    cursor: pointer;
+}
+
+.episodeDescriptionBox p {
+    margin-left: .5rem;
+}
+
+.episodeContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.episodeContainer .episodeDescription {
+    font-size: .9rem;
+    color: #7F8182;
 }

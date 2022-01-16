@@ -1,8 +1,8 @@
+import EpisodeDTO from "./EpisodeDTO";
+
 export default interface SeasonDTO {
-    number: string;
+    number: number;
     name: string;
     description: string;
-    animeId: string;
-    created_at: string;
-    updated_at: string;
+    episodes: EpisodeDTO[]
 }

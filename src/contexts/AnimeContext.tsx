@@ -1,19 +1,22 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { api } from '@/services/api'
-import { listItems } from '@/utils/pagination'
 import AnimeDTO from '@/interface/AnimeDTO'
+import SeasonDTO from "@/interface/SeasonDTO";
 
 interface AnimeContextType {
     featuredState: [any, Dispatch<any>];
     loadAll: () => Promise<void>;
     searchState: [string, Dispatch<SetStateAction<string>>];
     animeData: AnimeDTO[] | null;
+    // seasonsData: SeasonDTO[] | null;
+    // loadSeasons: (animeId: string) => Promise<void>;
 }
 
 export const AnimeContext = createContext({} as AnimeContextType)
 
 export function AnimeProvider({ children }) {
-    const [animeData, setAnimeData] = useState([])
+    const [animeData, setAnimeData] = useState([]);
+    // const [seasonsData, setSeasonsData] = useState([]);
     const featuredState = useState(null);
     const [, setFeatured] = featuredState;
     const searchState = useState('');
@@ -22,20 +25,16 @@ export function AnimeProvider({ children }) {
         const responsedata = await api.get('animes');
         const [jsonAnime] = responsedata.data;
 
-        const listAnimes = [{
-            slug: 'highlights',
-            title: 'Destaques',
-            items: { results: listItems(responsedata.data, 1, 10) }
-        },
-        {
-            slug: 'onrise',
-            title: 'Em Alta',
-            items: { results: listItems(responsedata.data, 2, 10) }
-        }]
-
         setAnimeData(responsedata.data);
         setFeatured(jsonAnime);
     }
+
+    // async function loadSeasons(animeId: string) {
+    //     const responsedata = await api.get(`animes/${animeId}/seasons`);
+    //     const [jsonSeasons] = responsedata.data;
+    //     setSeasonsData(jsonSeasons);
+    //     console.log(seasonsData);
+    // }
 
     return (
         <AnimeContext.Provider value={{ loadAll, featuredState, searchState, animeData }}>

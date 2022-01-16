@@ -1,15 +1,20 @@
 import css from '@/styles/components/Anime.module.css'
 import { api } from '@/services/api'
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import LikeOff from '@material-ui/icons/ThumbUpOutlined'
 import LikeOn from '@material-ui/icons/ThumbUp'
 import DislikeOff from '@material-ui/icons/ThumbDownOutlined'
-import DislikeOn from '@material-ui/icons/ThumbDown'
+import DislikeOn from '@material-ui/icons/ThumbDown';
+import SeasonDTO from '@/interface/SeasonDTO';
+import Play from '@material-ui/icons/PlayArrowRounded'
 
 export default function Anime({ item }) {
     const [midiaSelected, setMidiaSelected] = useState(0);
     const [isFavorite, setIsFavorite] = useState(item.favorite); 
     const [evaluation, setEvaluation] = useState(item.evaluation);
+    const [seasonsData, setSeasonsData] = useState([] as SeasonDTO[]);
+    const [seasonNumber, setSeasonNumber] = useState(0);
+
     let firstDate = new Date(item.start_date);
     let genres = [];
     for (let i in item.genres) {
@@ -39,6 +44,17 @@ export default function Anime({ item }) {
         }
     }
 
+    useEffect(() => {
+        async function loadSeasons(animeId: string) {
+            const responsedata = await api.get(`animes/${animeId}/seasons`);
+            const jsonSeasons = responsedata.data;
+            setSeasonNumber(jsonSeasons[0].number | 0);
+            setSeasonsData(jsonSeasons);
+        }
+
+        loadSeasons(item.id);
+    }, [item.id])
+
     return (
         <div className={css.mainFeatured}>
             <section className={css.featured} style={{
@@ -58,7 +74,7 @@ export default function Anime({ item }) {
                             <div className={css['featured--description']}>{description}</div>
                             <div className={css['featured--buttons']}>
                                 <div className={css['featured--watchbutton']} onClick={handleSetFavorite}>
-                                    <img src={ isFavorite ? '/assets/bookmark-fill.svg' : '/assets/bookmark.svg'} alt="fav" className={css.favorite} />Favoritar
+                                    <img src={ isFavorite ? '/assets/bookmark-fill.svg' : '/assets/bookmark.svg'} alt="fav" className={css.favorite} />{isFavorite ? 'Favoritado' : 'Favoritar'}
                                 </div>
                                 <div className={css['featured--evaluation']}>
                                     {evaluation && <LikeOn/>}
@@ -76,12 +92,33 @@ export default function Anime({ item }) {
             <div>
                 <div className={css.contentContainer}>
                     <nav className={css.navAnime}>
-                        <a href="#" id={`${midiaSelected == 0 ? css.select : ''}`} onClick={()=>setMidiaSelected(0)}><h4>Episódios</h4></a>
-                        <a href="#" id={`${midiaSelected == 1 ? css.select : ''}`} onClick={()=>setMidiaSelected(1)}><h4>Trilha Sonora</h4></a>
+                        <div id={`${midiaSelected == 0 ? css.select : ''}`} onClick={()=>setMidiaSelected(0)}><h4>Episódios</h4></div>
+                        <div id={`${midiaSelected == 1 ? css.select : ''}`} onClick={()=>setMidiaSelected(1)}><h4>Trilha Sonora</h4></div>
                     </nav>
-                    
                     {midiaSelected == 0 && <div>
-                        Episódios
+                        <select onChange={e => setSeasonNumber(+e.target.value)} className={`form-select ${css.select}`}>
+                            {seasonsData.length > 0 && seasonsData.map(season => {
+                                return <option key={season.number} value={season.number}>{season.name}</option>
+                            })}
+                        </select>
+                        <hr />
+
+                        {seasonsData.length > 0 && seasonsData.filter(season => season.number === seasonNumber)[0].episodes.sort((a,b) => +a.number - +b.number).map(episode => {
+                            return (
+                                <div key={episode.number} className={css.episodeContainer}>
+                                    <div className={css.episodeBox}>
+                                        <div className={css.episodeDescriptionBox}>
+                                            <Play/>
+                                            <p>{`Ep. ${+episode.number} - ${episode.name}`}</p>
+                                        </div>
+                                        <p>{episode.duration}min</p>
+                                    </div>
+                                    <p className={css.episodeDescription}>{episode.description}</p>
+                                    <hr />
+                                    
+                                </div>
+                            )
+                        })}
                     </div> }
 
                     {(midiaSelected == 1 && !item.playlist_link) && <div>
