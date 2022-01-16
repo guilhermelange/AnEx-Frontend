@@ -10,9 +10,8 @@ export default interface AnimeDTO {
     image_file: string;
     parental_rating: number;
     start_date: string;
-    created_at?: string;
-    updated_at?: string;
     favorite: boolean;
+    evaluation: boolean | null;
     genres?: GenreDTO[] | null;
     authors?: AuthorDTO[] | null;
     seasons?: SeasonDTO[] | null;

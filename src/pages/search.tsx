@@ -29,6 +29,8 @@ export default function Home() {
         anime.name.toLowerCase().includes(stringToSearch)
       )
       setFilteredAnime(filteredAnime);
+    } else {
+      setFilteredAnime([]);
     }
   }, [queryString])
 
@@ -52,8 +54,6 @@ export default function Home() {
         </div> }
 
       <Footer />
-
-      
 
       {(animeData.length <= 0 || !filteredAnime) &&
         <div className={homeStyles.loading}>

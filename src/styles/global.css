@@ -47,4 +47,12 @@ a:hover {
   background: #141414 !important;
   border: 1px solid #191717 !important;
   padding: 0 !important;
+  inset: auto !important;
+  margin-top: 40px !important;
+}
+
+@media (max-width: 1180px) {
+  .ReactModal__Content {
+    max-width: 90vw !important;
+  }
 }

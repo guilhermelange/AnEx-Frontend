@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AnimeContext } from '@/contexts/AnimeContext';
 import Link from 'next/link';
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import { AuthContext } from '@/contexts/AuthContext';
 
 interface HeaderRequest {
@@ -84,7 +83,10 @@ export default function Header({ favorite }: HeaderRequest) {
                     <div className={styles['header--info']}>
                         <div className={styles.buttonsHeader}>
                             <Link href={'/favorites'}>
-                                <button><img src={ favorite ? '/assets/fav.svg' : '/assets/fav.svg'} alt="AnEx" className={styles.favHeader} />Favoritos</button>
+                                <button>
+                                    <img src={ favorite ? '/assets/bookmark-fill.svg' : '/assets/bookmark.svg'} alt="AnEx" className={styles.favHeader} />
+                                    Favoritos
+                                </button>
                             </Link>
                             <div id={styles.divBusca}>
                                 <input type="search" id={styles.txtBusca} placeholder='Buscar...' onChange={e => setTextSearch(e.target.value)} value={textSearch} />

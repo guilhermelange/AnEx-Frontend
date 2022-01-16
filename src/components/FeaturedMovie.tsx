@@ -2,6 +2,7 @@ import styles from '@/styles/components/FeaturedMovie.module.css'
 import { useState } from 'react';
 import ModalAnime from '@/components/ModalAnime'
 import Anime from './Anime';
+import Add from '@material-ui/icons/Add'
 
 export default function FeaturedMovie({ item }) {
     const [isOpenModal, setIsOpen] = useState(false);
@@ -30,18 +31,21 @@ export default function FeaturedMovie({ item }) {
                         <div className={styles['featured--container']}>
                             <div className={styles['featured--name']}>{item.name}</div>
                             <div className={styles['featured--info']}>
-                                <div className={styles['featured--points']}>{item.evaluationMedia}% relevante</div>
+                                <div className={styles['featured--points']}>{Math.round(item.evaluationMedia)}% relevante</div>
                                 <div className={styles['featured--year']}>{firstDate.getFullYear()}</div>
                                 <div className={styles['featured--seasons']}>{item.seasonsCount} temporada{item.seasonsCount !== 1 ? 's' : ''}</div>
                             </div>
                             <div className={styles['featured--description']}>{description}</div>
                             <div className={styles['featured--buttons']}>
-                                <a href={`/watch/${item.id}`} className={styles['featured--watchbutton']}>
+                                {/* <a href={`/watch/${item.id}`} className={styles['featured--watchbutton']}>
                                     <img src='/assets/play.svg' alt="play" />Assistir
                                 </a>
                                 <a href={`/list/add/${item.id}`} className={styles['featured--mylistbutton']}>
                                     <img src='/assets/fav.svg' alt="fav" className="fav" />Favoritar
-                                </a>
+                                </a> */}
+                                <div className={styles['featured--watchbutton']}>
+                                    <Add/>Mais Informações
+                                </div>
                             </div>
                             <div className={styles['featured--genres']}><strong>Gêneros:</strong> {genres.join(', ')}</div>
                         </div>

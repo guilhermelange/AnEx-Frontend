@@ -19,7 +19,7 @@ export default function Home() {
         if (!animeData)
             loadAll();
 
-        const filteredAnime = animeData; //animeData.filter(anime => anime.favorite)
+        const filteredAnime = animeData.filter(anime => anime.favorite);
         setFilteredAnime(filteredAnime);
     }, [])
 
