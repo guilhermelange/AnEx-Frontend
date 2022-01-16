@@ -8,15 +8,15 @@ interface AnimeContextType {
     loadAll: () => Promise<void>;
     searchState: [string, Dispatch<SetStateAction<string>>];
     animeData: AnimeDTO[] | null;
-    // seasonsData: SeasonDTO[] | null;
-    // loadSeasons: (animeId: string) => Promise<void>;
+    seasonsData: SeasonDTO[] | null;
+    loadSeasons: (animeId: string) => Promise<void>;
 }
 
 export const AnimeContext = createContext({} as AnimeContextType)
 
 export function AnimeProvider({ children }) {
     const [animeData, setAnimeData] = useState([]);
-    // const [seasonsData, setSeasonsData] = useState([]);
+    const [seasonsData, setSeasonsData] = useState([]);
     const featuredState = useState(null);
     const [, setFeatured] = featuredState;
     const searchState = useState('');
@@ -29,15 +29,15 @@ export function AnimeProvider({ children }) {
         setFeatured(jsonAnime);
     }
 
-    // async function loadSeasons(animeId: string) {
-    //     const responsedata = await api.get(`animes/${animeId}/seasons`);
-    //     const [jsonSeasons] = responsedata.data;
-    //     setSeasonsData(jsonSeasons);
-    //     console.log(seasonsData);
-    // }
+
+    async function loadSeasons(animeId: string) {
+        const responsedata = await api.get(`animes/${animeId}/seasons`);
+        const jsonSeasons = responsedata.data;
+        setSeasonsData(jsonSeasons);
+    }
 
     return (
-        <AnimeContext.Provider value={{ loadAll, featuredState, searchState, animeData }}>
+        <AnimeContext.Provider value={{ loadAll, featuredState, searchState, animeData, seasonsData, loadSeasons }}>
             {children}
         </AnimeContext.Provider>
     )

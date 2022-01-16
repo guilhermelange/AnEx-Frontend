@@ -5,16 +5,17 @@ import LikeOff from '@material-ui/icons/ThumbUpOutlined'
 import LikeOn from '@material-ui/icons/ThumbUp'
 import DislikeOff from '@material-ui/icons/ThumbDownOutlined'
 import DislikeOn from '@material-ui/icons/ThumbDown';
-import SeasonDTO from '@/interface/SeasonDTO';
 import Play from '@material-ui/icons/PlayArrowRounded'
 import Link from 'next/link';
+import { AnimeContext } from '@/contexts/AnimeContext';
 
 export default function Anime({ item }) {
     const [midiaSelected, setMidiaSelected] = useState(0);
     const [isFavorite, setIsFavorite] = useState(item.favorite); 
     const [evaluation, setEvaluation] = useState(item.evaluation);
-    const [seasonsData, setSeasonsData] = useState([] as SeasonDTO[]);
+    // const [seasonsData, setSeasonsData] = useState([] as SeasonDTO[]);
     const [seasonNumber, setSeasonNumber] = useState(0);
+    const {seasonsData, loadSeasons} = useContext(AnimeContext);
 
     let firstDate = new Date(item.start_date);
     let genres = [];
@@ -46,14 +47,17 @@ export default function Anime({ item }) {
     } 
 
     useEffect(() => {
-        async function loadSeasons(animeId: string) {
-            const responsedata = await api.get(`animes/${animeId}/seasons`);
-            const jsonSeasons = responsedata.data;
-            setSeasonNumber(jsonSeasons[0].number | 0);
-            setSeasonsData(jsonSeasons);
+        async function handleLoadSeasons(animeId) {
+            await loadSeasons(animeId);
         }
 
-        loadSeasons(item.id);
+        handleLoadSeasons(item.id);
+        if (seasonsData.length > 0) {
+            setSeasonNumber(seasonsData[0].number);
+        } else {
+            setSeasonNumber(1);
+        }
+        
     }, [item.id])
 
     return (
@@ -104,7 +108,7 @@ export default function Anime({ item }) {
                         </select>
                         <hr />
 
-                        {seasonsData.length > 0 && seasonsData.filter(season => season.number === seasonNumber)[0].episodes.sort((a,b) => +a.number - +b.number).map(episode => {
+                        {(seasonsData.length > 0 && seasonNumber !== 0) && seasonsData.filter(season => season.number === seasonNumber)[0].episodes.sort((a,b) => +a.number - +b.number).map(episode => {
                             return (
                                 <div key={episode.number} className={css.episodeContainer}>
                                     <div className={css.episodeBox}>
