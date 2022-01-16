@@ -7,6 +7,7 @@ import DislikeOff from '@material-ui/icons/ThumbDownOutlined'
 import DislikeOn from '@material-ui/icons/ThumbDown';
 import SeasonDTO from '@/interface/SeasonDTO';
 import Play from '@material-ui/icons/PlayArrowRounded'
+import Link from 'next/link';
 
 export default function Anime({ item }) {
     const [midiaSelected, setMidiaSelected] = useState(0);
@@ -42,7 +43,7 @@ export default function Anime({ item }) {
             setEvaluation(evaluationIn);
             item.evaluation = evaluationIn;
         }
-    }
+    } 
 
     useEffect(() => {
         async function loadSeasons(animeId: string) {
@@ -107,9 +108,13 @@ export default function Anime({ item }) {
                             return (
                                 <div key={episode.number} className={css.episodeContainer}>
                                     <div className={css.episodeBox}>
-                                        <div className={css.episodeDescriptionBox}>
-                                            <Play/>
-                                            <p>{`Ep. ${+episode.number} - ${episode.name}`}</p>
+                                        <div>
+                                            <Link href={`/watch/${encodeURIComponent(item.id)}/${seasonNumber}/${episode.number}`} >
+                                                <div className={css.episodeDescriptionBox}>
+                                                    <Play/>
+                                                    <p>{`Ep. ${+episode.number} - ${episode.name}`}</p>
+                                                </div>
+                                            </Link>
                                         </div>
                                         <p>{episode.duration}min</p>
                                     </div>
