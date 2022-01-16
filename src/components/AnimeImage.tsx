@@ -1,8 +1,9 @@
 import styles from '@/styles/components/AnimeImage.module.css'
 import AnimeDTO from '@/interface/AnimeDTO';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalAnime from '@/components/ModalAnime';
 import Anime from '@/components/Anime';
+import { parseCookies, destroyCookie } from 'nookies'
 
 interface AnimeImageRequest {
     item: AnimeDTO;
@@ -11,6 +12,17 @@ interface AnimeImageRequest {
 
 export default function AnimeImage({ item }: AnimeImageRequest) {
     const [isOpenModal, setIsOpen] = useState(false);
+    
+    useEffect(()=> {
+        const {'modal.anime': modalAnime} = parseCookies();
+        
+        if (modalAnime) {
+            if (item.id === modalAnime) {
+                setIsOpen(true);
+                destroyCookie(undefined, 'modal.anime')
+            }
+        }
+    }, [])
     
     return (
         <>

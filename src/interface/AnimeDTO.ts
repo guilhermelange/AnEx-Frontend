@@ -17,4 +17,5 @@ export default interface AnimeDTO {
     seasons?: SeasonDTO[] | null;
     seasonsCount: number;
     evaluationMedia: number;
+    open?: boolean;
 }

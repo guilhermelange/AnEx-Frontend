@@ -6,6 +6,7 @@ import { AnimeContext } from '@/contexts/AnimeContext';
 import AnimeDTO from '@/interface/AnimeDTO';
 import SeasonDTO from '@/interface/SeasonDTO';
 import EpisodeDTO from '@/interface/EpisodeDTO';
+import { setCookie } from 'nookies';
 
 export default function Watch() {
     const { seasonsData, loadSeasons, animeData } =  useContext(AnimeContext);
@@ -22,12 +23,8 @@ export default function Watch() {
     }, [])
 
     useEffect(() => {
-        
-
         const anime = animeData.filter(item => item.id === animeId)[0];
         setAnime(anime);
-
-        console.log(seasonsData)
 
         const season = seasonsData.filter(item => item.number === +seasonNumber)[0];
         setSeason(season);
@@ -39,9 +36,16 @@ export default function Watch() {
         
     }, [animeId, seasonNumber, episodeNumber])
 
+    function historyBack() {
+        setCookie(undefined, 'modal.anime', String(animeId), {
+            maxAge: 60 * 60 * 1, // 1 hour
+        })
+        history.back();
+    }
+
     return (
         <>
-            <div className={css.back} onClick={e => history.back()}>
+            <div className={css.back} onClick={historyBack}>
                 <ArrowBack fontSize='large' />
             </div>
             <div className={css.container}>
